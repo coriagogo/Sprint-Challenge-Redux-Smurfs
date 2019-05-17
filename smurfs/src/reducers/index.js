@@ -3,18 +3,12 @@
 */
 
 import {
-  GET_SMURFS,
-  GET_SMURFS_SUCCESS,
-  GET_SMURFS_FAILURE,
-  ADD_SMURF,
-  ADD_SMURF_SUCCESS,
-  ADD_SMURF_FAILURE,
-  UPDATE_SMURF,
-  UPDATE_SMURF_SUCCESS,
-  UPDATE_SMURF_FAILURE,
-  DELETE_SMURF,
-  DELETE_SMURF_SUCCESS,
-  DELETE_SMURF_FAILURE,
+  FETCHING_SMURF,
+  FETCHING_SMURF_SUCCESS,  
+  ADDING_SMURF,
+  ADDING_SMURF_SUCCESS,
+  DELETING_SMURF,
+  SMURF_DELETED,  
 } from '../actions';
 
 
@@ -23,81 +17,45 @@ const initialState = {
    smurfs: [],
    fetchingSmurfs: false,
    addingSmurf: false,
-   updatingSmurf: false,
    deletingSmurf: false,
    error: null
  }
 
  const smurfReducer = (state = initialState, action) => {
    switch(action.type) {
-     case GET_SMURFS:
+     case FETCHING_SMURF:
       return {
         ...state,
         fetchingSmurfs: true
       };
-    case GET_SMURFS_SUCCESS:
+    case FETCHING_SMURF_SUCCESS:
       return {
         ...state,
         smurfs: [...action.payload],
         fetchingSmurfs: false
-      };
-    case GET_SMURFS_FAILURE:
-      return {
-        ...state,
-        error: action.payload,
-        fetchingSmurfs: false
-      };
-    case ADD_SMURF:
+      };    
+    case ADDING_SMURF:
       return {
         ...state,
         addingSmurf: true
       };
-    case ADD_SMURF_SUCCESS:
+    case ADDING_SMURF_SUCCESS:
       return {
         ...state,
         smurfs: [...action.payload],
         addingSmurf: false
-      };
-    case ADD_SMURF_FAILURE:
-      return {
-        ...state,
-        error: action.payload,
-        addingSmurf: false
-      };
-    case UPDATE_SMURF:
-      return {
-        ...state,
-        updatingSmurf: true
-      };
-    case UPDATE_SMURF_SUCCESS:
-      return {
-        ...state,
-        smurfs: [...action.payload],
-        updatingSmurf: false
-      };
-    case UPDATE_SMURF_FAILURE:
-      return {
-        ...state,
-        error: action.payload,
-        updatingSmurf: false
-      };
-    case DELETE_SMURF:
+      };        
+    case DELETING_SMURF:
       return {
         ...state,
         deletingSmurf: true
       };
-    case DELETE_SMURF_SUCCESS:
+    case SMURF_DELETED:
       return {
         ...state,
         smurfs: [...action.payload],
         deletingSmurf: false
       };
-    case DELETE_SMURF_FAILURE:
-      return {
-        ...state,
-        error: action.payload,
-        deletingSmurf: false
-      }
    }
  }
 
