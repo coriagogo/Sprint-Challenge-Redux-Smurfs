@@ -21,7 +21,7 @@ const initialState = {
    error: null
  }
 
- const smurfReducer = (state = initialState, action) => {
+const reducer = (state = initialState, action) => {
    switch(action.type) {
      case FETCHING_SMURF:
       return {
@@ -31,7 +31,7 @@ const initialState = {
     case FETCHING_SMURF_SUCCESS:
       return {
         ...state,
-        smurfs: [...action.payload],
+        smurfs: action.payload,
         fetchingSmurfs: false
       };    
     case ADDING_SMURF:
@@ -42,7 +42,7 @@ const initialState = {
     case ADDING_SMURF_SUCCESS:
       return {
         ...state,
-        smurfs: [...action.payload],
+        smurfs: action.payload,
         addingSmurf: false
       };        
     case DELETING_SMURF:
@@ -53,13 +53,15 @@ const initialState = {
     case SMURF_DELETED:
       return {
         ...state,
-        smurfs: [...action.payload],
+        smurfs: action.payload,
         deletingSmurf: false
       };
+    default: 
+      return state;
    }
  }
 
- export default smurfReducer;
+ export default reducer;
 
 
 /*
