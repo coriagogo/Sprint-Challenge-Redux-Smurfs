@@ -32,12 +32,12 @@ export const DELETE_SMURF_FAILURE = 'DELETE_SMURF_FAILURE';
    D - deleteSmurf
 */
 
-export const getSmurfs = () => {
+export const getSmurfs = ()=> dispatch => {
   dispatch({ type: GET_SMURFS });
   axios
     .get('http://localhost:3333/smurfs')
     .then(res => {
-      dispatch({ type: GET_SMURF_SUCCESS, payload: res.data });
+      dispatch({ type: GET_SMURFS_SUCCESS, payload: res.data });
     })
     .catch(err => {
       dispatch({ type: GET_SMURFS_FAILURE, payload: err });
@@ -56,7 +56,7 @@ export const addSmurf = ({ name, age, height }) => dispatch => {
     });
 };
 
-export const updateSmurf = ({ name, age, height }) => dispatch => {
+export const updateSmurf = ({ id, name, age, height }) => dispatch => {
   dispatch({ type: UPDATE_SMURF });
   axios
     .put(`http://localhost:3333/smurfs/${id}`, { name, age, height })
@@ -68,7 +68,7 @@ export const updateSmurf = ({ name, age, height }) => dispatch => {
     });
 };
 
-export const deleteSmurf = id = dispatch => {
+export const deleteSmurf = id => dispatch => {
   dispatch({ type: DELETE_SMURF });
   axios
     .delete(`http://localhost:3333/smurfs/${id}`)
